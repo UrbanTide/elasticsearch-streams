@@ -1,3 +1,42 @@
+
+# Fork includes
+
+parsing the bulk to the format of 
+```
+client.bulk({
+    body  : bulkCmds
+}, callback);
+```
+
+where transformToBulkCmd stream: 
+```
+var transformToCommand = through2.obj(
+    function (chunk, enc, cb) {
+        var bulkCmds = null;
+        if( chunk ) {
+            bulkCmds = {
+                index: [
+                    {index: {_index: 'index', _type: 'type'}},
+                    chunk
+                ]
+            };
+        }
+        cb(null, bulkCmds);
+    }
+);
+```
+
+and piping:
+```
+var ws = new WritableBulk(bulkExec);
+
+var _stream = transformToCommand.pipe(ws).on('finish', done);
+```
+
+
+
+###############################################################################################
+
 # Elasticsearch streams
 
 Expose a Writeable stream for bulk commands and a Readable stream from

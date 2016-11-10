@@ -1,10 +1,10 @@
 {
-  "name": "elasticsearch-streams",
+  "name": "elasticsearch-streams-ut",
   "description": "Stream in and out of Elasticsearch",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hmalphettes/elasticsearch-streams.git"
+    "url": "https://github.com/UrbanTide/elasticsearch-streams"
   },
   "main": "index.js",
   "scripts": {
